@@ -1,36 +1,26 @@
 #include <stdio.h>
-#include <stdbool.h>
-
-int main()
-{
-    bool isMatched;
-    int arrSize, i, findValue;
-
-    printf("Vui lòng nhập số phần tử của mảng: ");
-    scanf("%d", &arrSize);
-    
-    int Arr[arrSize];
-    for(int i = 0; i < arrSize; i++)
-    {
-        printf("Vui lòng nhập phần tử [%d]: ", i);
-        scanf("%d", &Arr[i]);
-    }
-
-    printf("Vui lòng nhập giá trị cần tìm: ");
-    scanf("%d", &findValue);
-
-    for(int i = 0; i < arrSize; i++)
-    {
-        if(Arr[i] == findValue)
-        {
-            printf("Chỉ số của phần tử trong mảng là: %d", i);
-            isMatched = true;
+int main() {
+    int arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x;
+    int left = 0, right = n - 1, mid;
+    int found = -1;
+    printf("Nhap phan tu can tim: ");
+    scanf("%d", &x);
+    while (left <= right) {
+        mid = (left + right) / 2;
+        if (arr[mid] == x) {
+            found = mid;
             break;
+        } else if (arr[mid] < x) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
     }
-
-    if(!isMatched)
-    {
-        printf("Không tìm thấy chỉ số của phần tử trong mảng");
-    }
+    if (found != -1)
+        printf("Tim thay %d tai chi so %d trong mang.\n", x, found);
+    else
+        printf("Khong tim thay phan tu %d trong mang.\n", x);
+    return 0;
 }

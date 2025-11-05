@@ -1,39 +1,21 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-int main()
-{
-    bool isMatched;
-    int arrSize, i, findValue;
-
-    printf("Vui lòng nhập số phần tử của mảng: ");
-    scanf("%d", &arrSize);
-    
-    int Arr[arrSize];
-    for(int i = 0; i < arrSize; i++)
-    {
-        printf("Vui lòng nhập phần tử [%d]: ", i);
-        scanf("%d", &Arr[i]);
-    }
-
-    for (int i = 0; i < arrSize; i++)
-    {
-        for (int j = 0; j < arrSize - i - 1; j++)
-        {
-            int predicingNumer = Arr[j + 1];
-            int index = Arr[j];
-            if (index > predicingNumer)
-            {
-                int temp = Arr[j];
-                Arr[j] = Arr[j + 1];
-                Arr[j + 1] = temp;
+int main() {
+    int arr[] = {8, 3, 7, 4, 9, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
     }
-   
-    printf("Mảng sau khi sắp xếp là: ");
-    for(int i = 0; i < arrSize; i ++)
-    {
-        printf("%d ", Arr[i]);
+    printf("Mang sau khi sap xep: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
+    return 0;
 }

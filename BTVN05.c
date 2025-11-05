@@ -1,37 +1,21 @@
 #include <stdio.h>
-#include <stdbool.h>
-
-int main()
-{
-    bool isMatched;
-    int arrSize, i, findValue;
-
-    printf("Vui lòng nhập số phần tử của mảng: ");
-    scanf("%d", &arrSize);
-    
-    int Arr[arrSize];
-    for(int i = 0; i < arrSize; i++)
-    {
-        printf("Vui lòng nhập phần tử [%d]: ", i);
-        scanf("%d", &Arr[i]);
-    }
-
-    printf("Vui lòng nhập giá trị cần tìm: ");
-    scanf("%d", &findValue);
-
-    int exitsCount = 0;
-    for(int i = 0; i < arrSize; i++)
-    {
-        if(Arr[i] == findValue)
-        {
-            exitsCount++;
-            isMatched = true;
+#include <string.h>
+int main() {
+    char *arr[] = {"chuoi1 ", "chuoi2", "chuoi3", "chuoi4", "chuoi5"};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    char input[100];
+    int found = 0;
+    printf("Nhap chuoi can tim: ");
+    scanf("%s", input);
+    for (int i = 0; i < n; i++) {
+        if (strcmp(arr[i], input) == 0) {
+            printf("Chuoi '%s' duoc tim thay tai vi tri %d.\n", input, i);
+            found = 1;
+            break;
         }
     }
-
-    if(!isMatched)
-    {
-        printf("Không tìm thấy chỉ số của phần tử trong mảng");
+    if (!found) {
+        printf("Khong tim thay chuoi '%s' trong mang.\n", input);
     }
-    printf("Số lần giá trị xuất hiện trong mảng: %d", exitsCount);
+    return 0;
 }

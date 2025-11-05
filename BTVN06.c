@@ -1,44 +1,26 @@
 #include <stdio.h>
-#include <stdbool.h>
-
-int main()
-{
-    int arrSize, i, findValue;
-
-    printf("Vui lòng nhập số phần tử của mảng: ");
-    scanf("%d", &arrSize);
-    
-    int Arr[arrSize];
-    for(int i = 0; i < arrSize; i++)
-    {
-        printf("Vui lòng nhập phần tử [%d]: ", i);
-        scanf("%d", &Arr[i]);
+#include <limits.h>
+int main() {
+    int arr[] = {12, 18, 7, 89, 36, 23};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    if (n < 2) {
+        printf("Loi: Mang phai co it nhat 2 phan tu.\n");
+        return 1;
     }
-
-    for (int i = 0; i < arrSize; i++)
-    {
-        bool isSwapped = false;
-        for (int j = 0; j < arrSize - i - 1; j++)
-        {
-            int predicingNumer = Arr[j + 1];
-            int index = Arr[j];
-            if (index > predicingNumer)
-            {
-                int temp = Arr[j];
-                Arr[j] = Arr[j + 1];
-                Arr[j + 1] = temp;
-                isSwapped = true;
-            }
-        }
-        if(isSwapped)
-        {
-            break;
+    int max1 = INT_MIN, max2 = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > max1) {
+            max2 = max1;
+            max1 = arr[i];
+        } else if (arr[i] > max2 && arr[i] != max1) {
+            max2 = arr[i];
         }
     }
-   
-    printf("Mảng sau khi sắp xếp là: ");
-    for(int i = 0; i < arrSize; i ++)
-    {
-        printf("%d ", Arr[i]);
+    if (max2 == INT_MIN) {
+        printf("Loi: Khong co phan tu lon thu hai trong mang.\n");
+    } else {
+        printf("Phan tu lon nhat: %d\n", max1);
+        printf("Phan tu lon thu hai: %d\n", max2);
     }
+    return 0;
 }

@@ -1,62 +1,22 @@
 #include <stdio.h>
-#include <stdbool.h>
-
-int main()
-{
-    int arrSize, i, findValue;
-
-    printf("Vui lòng nhập số phần tử của mảng: ");
-    scanf("%d", &arrSize);
-    
-    int Arr[arrSize];
-    for(int i = 0; i < arrSize; i++)
-    {
-        printf("Vui lòng nhập phần tử [%d]: ", i);
-        scanf("%d", &Arr[i]);
-    }
-
-    for (int i = 0; i < arrSize; i++)
-    {
-        for (int j = 0; j < arrSize - i - 1; j++)
-        {
-            int predicingNumer = Arr[j + 1];
-            int index = Arr[j];
-            if (index > predicingNumer)
-            {
-                int temp = Arr[j];
-                Arr[j] = Arr[j + 1];
-                Arr[j + 1] = temp;
+int main() {
+    int arr[] = {3, 1, 2, 3, 4, 2, 3, 2, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int max_count = 0;
+    int most_freq = arr[0];
+    for (int i = 0; i < n; i++) {
+        int count = 1;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
             }
         }
-    }
-    
-    printf("Vui lòng nhập giá trị cần tìm: ");
-    scanf("%d", &findValue);
-
-    bool isFound = false;
-    int leftValue = 0;
-    int rightValue = arrSize - 1;
-    int midValue, midIndex;
-    while (leftValue <= midValue)
-    {
-        midIndex = (leftValue + rightValue) / 2;
-        midValue = Arr[midIndex];
-        if(midValue == findValue)
-        {
-            printf("Phần tử %d được tìm thấy tại chỉ số: %d\n", findValue, midIndex);
-            isFound = true;
-            break;
-        }
-        else if (midValue < findValue)
-        {
-            leftValue = midIndex + 1; // tìm bên phải
-        }
-        else
-        {
-            rightValue = midIndex - 1; // tìm bên trái
+        if (count > max_count) {
+            max_count = count;
+            most_freq = arr[i];
         }
     }
-    
-     if (!isFound)
-        printf("Không tìm thấy phần tử trong mảng.\n");
+    printf("Phan tu xuat hien nhieu nhat: %d\n", most_freq);
+    printf("So lan xuat hien: %d\n", max_count);
+    return 0;
 }
